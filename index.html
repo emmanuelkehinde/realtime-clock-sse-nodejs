@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sse nodejs</title>
+</head>
+<body>
+    <p id="clock"></p>
+    <script>
+    
+    if(typeof(EventSource) !== "undefined") {
+        var ev = new EventSource('/get/time');
+            ev.addEventListener('time_change', function (event) {
+            document.getElementById("clock").innerHTML = '<h4>' + event.data + '</h4>' + document.getElementById("clock").innerHTML;
+        })
+    } else {
+        console.log('Sorry! No server-sent events support...');
+    }
+    </script>
+</body>
+</html>
